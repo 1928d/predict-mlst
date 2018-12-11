@@ -7,19 +7,12 @@ of the 7 genes that correspond to them.
 Finally we use a script that parses the blast result and the file with the mlst profiles
 and we get the strain type of the reference genome.
 
-## if you don't have blast installed, do as following:
+## Dependency:
+BLAST https://www.ncbi.nlm.nih.gov/books/NBK279671/
+
+## clone github repository to get the parser script
 ```
-wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.6.0/ncbi-blast-2.6.0+-x64-linux.tar.gz
-tar xzf ncbi-blast-2.6.0+-x64-linux.tar.gz
-nano .bashrc
-```
-scroll to the end of the file and add:
-```
-export PATH="$PATH:/home/alex/ncbi-blast-2.6.0+/bin"
-```
-then, after quiting the nano editor:
-```
-source .bashrc
+git clone https://github.com/1928d/predict-mlst.git
 ```
 
 ## create analysis folder
@@ -60,7 +53,7 @@ blastn -query mlst_alleles.fna -db ecoli -out mlst_result.txt -outfmt 6 -qcov_hs
 wget https://pubmlst.org/data/profiles/ecoli.txt
 ```
 
-## use the script to get the strain type
+## use the parser script to get the strain type
 ```
-python3 predict_mlst_profile.py -b mlst_result.txt -p ecoli.txt
+python3 /path/to/predict-mlst/predict_mlst_profile.py -b mlst_result.txt -p ecoli.txt
 ```
